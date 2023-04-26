@@ -78,6 +78,17 @@ function corrigeMulher(req, res) {
 }
 
 // DELETE
+function deletaMulher(req, res) {
+  function todasMenosEla(mulher){
+    if(mulher.id !== req.params.id){
+      return mulher
+    }
+  }
+
+  const mulheresRestantes = mulheres.filter(todasMenosEla)
+  res.json(mulheresRestantes)
+}
+
 
 // PORTA
 function mostraPorta(){
@@ -94,7 +105,7 @@ app.use(router.post('/mulheres', criaMulher))
 app.use(router.patch('/mulheres/:id', corrigeMulher))
 
 // configura rota DELETE/mulheres
-
+app.use(router.delete('/mulheres/:id', deletaMulher))
 
 // servidor ouvindo a porta
 app.listen(porta, mostraPorta)

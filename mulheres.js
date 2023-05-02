@@ -2,13 +2,18 @@
 const express = require("express");
 // aqui configura a primeira parte da rota
 const router = express.Router();
+const {v4: uuidv4} = require('uuid');
+
+const conectaDB = require("./banco");
+conectaDB();
+
 // aqui inicia o app
 const app = express();
-// aqui cria a porta
-
 app.use(express.json())
+
+// aqui cria a porta
 const porta = 3333;
-const {v4: uuidv4} = require('uuid');
+
 
 // lista inicial de mulheres
 const mulheres = [
